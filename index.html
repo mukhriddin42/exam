@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- FAVICON LINK -->
+    <link rel="icon" type="image/svg+xml" href="./images/man.png" />
+
+    
+
+    <!-- CSS LINK -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <script src="./js/script.js" defer></script>
+    <script src="./js/main.js" defer></script>
+
+    <!-- FONT AWESOME LINK -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Random User | Exam</title>
+  </head>
+  <body>
+    <!-- HEADER START -->
+    <header>
+      <div class="header-content container">
+        <div class="header-title">
+          <img src="./images/man.png" alt="" />
+          <h1>Random user</h1>
+        </div>
+
+        <!-- FILTER SECTION START -->
+        <div class="filter-box">
+          <input class="search-input" id="search-input" type="text" />
+          <select name="gender-filter" id="gender-filter" class="gender-filter">
+            <option value="all">All genders</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <a class="btn following-btn" id="following-btn" href="#">Following</a>
+        </div>
+        <!-- FILTER SECTION END -->
+      </div>
+    </header>
+    <!-- HEADER END -->
+
+    <!-- MAIN START -->
+    <main>
+      <div class="main-content container">
+        <div class="users-container" id="users-container"></div>
+        <button class="btn load-more-btn" id="load-more-btn">Load more</button>
+      </div>
+      <div class="liked hidden" id="liked">
+        <div class="liked-header">
+          <h1>Liked pictures</h1>
+          <button class="btn close-liked-btn" id="close-liked-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="liked-elements-container">
+            <div class="liked-element">
+                <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-trash"></i></button>
+                <button class="download-btn" id="download-btn"><i class="fa-regular fa-circle-down"></i></button>
+                <img src="./images/man.png" alt="">
+            </div>
+            <div class="liked-element">
+                <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-trash"></i></button>
+                <button class="download-btn" id="download-btn"><i class="fa-regular fa-circle-down"></i></button>
+                <img src="./images/man.png" alt="">
+            </div>
+            <div class="liked-element">
+                <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-trash"></i></button>
+                <button class="download-btn" id="download-btn"><i class="fa-regular fa-circle-down"></i></button>
+                <img src="./images/man.png" alt="">
+            </div>
+            <div class="liked-element">
+                <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-trash"></i></button>
+                <button class="download-btn" id="download-btn"><i class="fa-regular fa-circle-down"></i></button>
+                <img src="./images/man.png" alt="">
+            </div>
+            <div class="liked-element">
+              <button class="remove-btn" id="remove-btn"><i class="fa-solid fa-trash"></i></button>
+              <button class="download-btn" id="download-btn"><i class="fa-regular fa-circle-down"></i></button>
+              <img src="./images/man.png" alt="">
+            </div>
+        </div>
+      </div>
+      <div class="overlay hidden" id="overlay"></div>
+    </main>
+    <!-- MAIN END -->
+
+    <!-- JAVASCRIPTNI ULASH -->
+
+  </body>
+</html>

@@ -1,0 +1,309 @@
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.male {
+    color: dodgerblue;
+}
+
+.female {
+    color: crimson;
+}
+
+.btn {
+    box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    background-color: #79bbff;
+    border-radius: 6px;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+    background-color: #378de5;
+}
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    backdrop-filter: blur(2px);
+    z-index: 100;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 90;
+}
+
+.header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-title img {
+    width: 45px;
+}
+
+.filter-box {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.following-btn {
+    box-shadow: #a4e271;
+    background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+    background-color: #89c403;
+    border: 1px solid #74b807;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #528009;
+}
+
+.following-btn:hover {
+    background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+    background-color: #77a809;
+}
+
+main {
+    margin-top: 170px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.users-container {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.user-item {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 7px;
+    border-radius: 8px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.user-item button {
+    margin-top: 10px;
+}
+
+.load-more-btn {
+    box-shadow: #9fb4f2;
+    background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    background-color: #7892c2;
+    border: 1px solid #4e6096;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #283966;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.load-more-btn:hover {
+    background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    background-color: #476e9e;
+}
+
+.fullname {
+    text-align: center;
+}
+
+.email {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.email:hover {
+    color: blueviolet;
+}
+
+.fa-envelope {
+    color: orange;
+}
+
+.fa-globe {
+    color: limegreen;
+}
+
+.image-box {
+    position: relative;
+    width: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+
+.image-box img {
+    width: 100%;
+}
+
+
+
+/* Liked pictures modal */
+.liked {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 20px 20px 20px;
+    background: #fff;
+    margin-top: 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    z-index: 101;
+}
+
+.liked::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.liked::-webkit-scrollbar-track {
+    background-color: lavender;
+    border-radius: 16px;
+    margin: 10px 0;
+}
+
+.liked::-webkit-scrollbar-thumb {
+    background-color: ivory;
+    border-radius: 16px;
+}
+
+.liked-header {
+    position: sticky;
+    top: 1px;
+    left: 0;
+    background: #fff;
+    padding: 20px 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 70;
+}
+
+.close-liked-btn {
+    box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    background-color: #79bbff;
+    border-radius: 6px;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+
+
+.liked-elements-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.liked-element {
+    position: relative;
+}
+
+.liked-element img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.liked-element .remove-btn {
+    position: absolute;
+    right: 17px;
+    top: 20px;
+    color: #FFA955;
+    cursor: pointer;
+    font-size: 22px;
+    background: transparent;
+    border: none;
+    transition: all .4s;
+}
+
+.liked-element .remove-btn:hover {
+    color: crimson;
+}
+
+.liked-element .download-btn {
+    position: absolute;
+    right: 15px;
+    top: 60px;
+    cursor: pointer;
+    font-size: 22px;
+    background: transparent;
+    border: none;
+    color: #3D90D7;
+    transition: all .3s;
+}
+
+.liked-element .download-btn:hover {
+    color: #03A791;
+}
