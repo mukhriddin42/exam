@@ -5,6 +5,8 @@ const followed = document.getElementById("liked");
 const followedElContainer = document.getElementById("liked-elements-container");
 const closeLikedBtn = document.getElementById("close-liked-btn");
 const overlay = document.getElementById("overlay");
+const searchInput = document.getElementById("search-input");
+const genderFilter = document.getElementById("gender-filter");
 
 
 window.addEventListener("beforeunload", () => {
@@ -66,7 +68,7 @@ function renderCard(item) {
             <h2 class="fullname">${item.name.first} ${item.name.last}</h2>
             <p class="email">${item.email}</p>
             <p class="gender">
-              <i class="fa-solid fa-person-half-dress ${item.gender}"></i> ${item.gender}
+              <i class="fa-solid fa-person-half-dress ${item.gender}"></i> <span>${item.gender}</span>
             </p>
             <p class="state"><i class="fa-solid fa-globe"></i> ${item.location.country}</p>
             <button onclick="follow('${item.email}', '${item.name.first}', '${item.name.last}', '${item.email}', '${item.gender}', '${item.picture.large}', '${item.location.country}')" data-id="${item.email}" class="btn follow-btn">
@@ -155,4 +157,45 @@ followingBtn.addEventListener("click", () => {
   renderFollowedUsers();
   followed.classList.remove("hidden");
   overlay.classList.remove("hidden");
+})
+
+
+
+
+// Search by user
+searchInput.addEventListener("input", () => {
+  const inputValue = searchInput.value.toLowerCase();
+  const userFullNames = document.querySelectorAll(".fullname");
+
+
+  userFullNames.forEach(user => {
+
+    let userFullName = user.textContent.toLowerCase();
+    if(userFullName.includes(inputValue)) {
+      user.parentElement.classList.remove("hidden");
+      // user.parentElement.style.display = "none"
+      console.log(user.parentElement);
+    } else {
+      user.parentElement.classList.add("hidden");
+      console.log("Hidden card: ", user.parentElement);
+    }
+  })
+
+})
+
+
+// Filter by position
+genderFilter.addEventListener("change", () => {
+  const sellectedGender = genderFilter.value;
+
+  const userGenders = document.querySelectorAll(".gender span");
+  userGenders.forEach(gender => {
+    console.log(gender.textContent);
+    console.log(gender.parentElement.parentElement);
+    if( gender.textContent === sellectedGender) {
+      gender.parentElement.parentElement.classList.remove("hidden");
+    } else {
+      gender.parentElement.parentElement.classList.add("hidden");
+    }
+  })
 })

@@ -19,9 +19,6 @@ body {
     margin: 0 auto;
 }
 
-.hidden {
-    display: none;
-}
 
 .male {
     color: dodgerblue;
@@ -130,10 +127,9 @@ main {
 }
 
 .user-item {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:center;
     padding: 20px;
     gap: 7px;
     border-radius: 8px;
@@ -142,6 +138,7 @@ main {
 
 .user-item button {
     margin-top: 10px;
+    text-align: center;
 }
 
 .load-more-btn {
@@ -186,7 +183,6 @@ main {
     width: 90px;
     border-radius: 50%;
     overflow: hidden;
-
 }
 
 .image-box img {
@@ -306,4 +302,9 @@ main {
 
 .liked-element .download-btn:hover {
     color: #03A791;
+}
+
+
+.hidden {
+    display: none;
 }
