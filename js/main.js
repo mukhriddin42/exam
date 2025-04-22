@@ -49,8 +49,8 @@ function displayData(data) {
 }
 
 function renderCard(item) {
-    console.log(item);
-    const nameId = item.name.first;
+    // console.log(item);
+    // const nameId = item.name.first;
     const userItem = document.createElement("div");
     userItem.classList.add("user-item")
     userItem.innerHTML = `
@@ -106,21 +106,36 @@ function checkIsFollowed(id) {
 
 
 // Follow qilingan userlar
-function followedUsersRender() {
+function renderFollowedUsers() {
   const followedUsers = JSON.parse(localStorage.getItem("followed") || "[]");
 
   followedElContainer.innerHTML = "";
   if(followedUsers.length === 0) {
     followedElContainer.innerHTML = "<h2>No followed users yet</h2>";
     return;
-  } else {
-    followedElContainer.innerHTML = "<h2>Followed userlar bor, cardni render qilish kerak faqat</h2>";
   }
+
+  followedUsers.forEach(user => {
+    const followedItem = document.createElement("div");
+    followedItem.classList.add("user-item")
+    followedItem.innerHTML = `
+            <div class="image-box">
+              <img src="${user.imgUrl}" alt="" />
+            </div>
+            <h2 class="fullname">${user.firstName} ${user.lastName}</h2>
+            <p class="email">${user.email}</p>
+            <p class="gender">
+              <i class="fa-solid fa-person-half-dress ${user.gender}"></i> ${user.gender}
+            </p>
+            <p class="state"><i class="fa-solid fa-globe"></i> ${user.country}</p>
+        `;
+    followedElContainer.appendChild(followedItem);
+  });
 }
 
 
 followingBtn.addEventListener("click", () => {
-  followedUsersRender();
+  renderFollowedUsers();
   followed.classList.remove("hidden");
   overlay.classList.remove("hidden");
 })
