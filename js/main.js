@@ -6,6 +6,12 @@ const followedElContainer = document.getElementById("liked-elements-container");
 const closeLikedBtn = document.getElementById("close-liked-btn");
 const overlay = document.getElementById("overlay");
 
+
+window.addEventListener("beforeunload", () => {
+  localStorage.removeItem("followed");
+});
+
+
 closeLikedBtn.addEventListener("click", () => {
     followed.classList.add("hidden");
     overlay.classList.add("hidden");
@@ -63,7 +69,7 @@ function renderCard(item) {
               <i class="fa-solid fa-person-half-dress ${item.gender}"></i> ${item.gender}
             </p>
             <p class="state"><i class="fa-solid fa-globe"></i> ${item.location.country}</p>
-            <button onclick="follow('${item.email}', '${item.name.first}', '${item.name.last}', '${item.email}', '${item.gender}', '${item.picture.large}')" data-id="" class="btn follow-btn">
+            <button onclick="follow('${item.email}', '${item.name.first}', '${item.name.last}', '${item.email}', '${item.gender}', '${item.picture.large}', '${item.location.country}')" data-id="${item.email}" class="btn follow-btn">
               ${checkIsFollowed(item.email)}
             </button>
         `;
@@ -71,14 +77,15 @@ function renderCard(item) {
 }
 
 
-function follow(id, firstName, lastName, email, gender, imgUrl) {
+function follow(id, firstName, lastName, email, gender, imgUrl, country) {
     const obj = {
         id,
         firstName, 
         lastName, 
         email, 
         gender, 
-        imgUrl
+        imgUrl, 
+        country
     };
     let followedUsers = JSON.parse(localStorage.getItem("followed") || "[]");
 
@@ -93,7 +100,17 @@ function follow(id, firstName, lastName, email, gender, imgUrl) {
         localStorage.setItem("followed", JSON.stringify(followedUsers));
         console.log(`${firstName} unfollowed`);
     }
-    checkIsFollowed(firstName);
+    
+    updateButtonText(id, !isFollowed);
+    renderFollowedUsers();
+
+}
+
+function updateButtonText(id, isFollowed) {
+    const button = document.querySelector(`button[data-id="${id}"]`);
+    if (button) {
+      button.textContent = isFollowed ? "Followed" : "Follow";
+    }
 }
 
 function checkIsFollowed(id) {
