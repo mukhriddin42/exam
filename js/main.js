@@ -2,6 +2,7 @@ const usersContainer = document.getElementById("users-container");
 const loadMoreBtn = document.getElementById("load-more-btn");
 const followingBtn = document.getElementById("following-btn");
 const followed = document.getElementById("liked");
+const followedElContainer = document.getElementById("liked-elements-container");
 const closeLikedBtn = document.getElementById("close-liked-btn");
 const overlay = document.getElementById("overlay");
 
@@ -11,7 +12,7 @@ closeLikedBtn.addEventListener("click", () => {
 })
 
 
-let limit = 10;
+let limit = 5;
 
 window.addEventListener("DOMContentLoaded", () => {
   getData(limit);
@@ -62,72 +63,64 @@ function renderCard(item) {
               <i class="fa-solid fa-person-half-dress ${item.gender}"></i> ${item.gender}
             </p>
             <p class="state"><i class="fa-solid fa-globe"></i> ${item.location.country}</p>
-            <button onclick="follow('${item.name.first}', '${item.name.last}', '${item.email}', '${item.gender}', '${item.picture.large}')" data-id="" class="btn follow-btn">${checkIsFollowed(nameId)}</button>
+            <button onclick="follow('${item.email}', '${item.name.first}', '${item.name.last}', '${item.email}', '${item.gender}', '${item.picture.large}')" data-id="" class="btn follow-btn">
+              ${checkIsFollowed(item.email)}
+            </button>
         `;
     usersContainer.appendChild(userItem);
 }
 
 
-function follow(firstName, lastName, email, gender, imgUrl) {
+function follow(id, firstName, lastName, email, gender, imgUrl) {
     const obj = {
+        id,
         firstName, 
         lastName, 
         email, 
         gender, 
         imgUrl
-    }
-    console.log("Following");
-    console.log("mana shu object: ", obj);
-    const followedUsersObjs = JSON.parse(localStorage.getItem("followed") || "[]");
+    };
+    let followedUsers = JSON.parse(localStorage.getItem("followed") || "[]");
 
-    const followedUsers = [];
-    for (el of followedUsersObjs) {
-        followedUsers.push(el.firstName);
-    }
-    console.log(followedUsers);
-    
-    if(!followedUsers.includes(firstName)) {
-        followedUsersObjs.push(obj);
+    const isFollowed = followedUsers.some(user => user.id === id)
+
+    if(!isFollowed) {
+        followedUsers.push(obj);
         localStorage.setItem("followed", JSON.stringify(followedUsers));
-        console.log(followedUsers);
+        console.log(`${firstName} followed!`);
     } else {
-        const removedFollowing = followedUsers.filter((followedIds) => followedIds !== firstName);
-        localStorage.setItem("followed", JSON.stringify(removedFollowing))
+        followedUsers = followedUsers.filter(user => user.id !== id);
+        localStorage.setItem("followed", JSON.stringify(followedUsers));
+        console.log(`${firstName} unfollowed`);
     }
-
     checkIsFollowed(firstName);
 }
 
 function checkIsFollowed(id) {
     const followedUsers = JSON.parse(localStorage.getItem("followed") || "[]");
-
-    return `${followedUsers.includes(id) ? "Followed" : "Follow"}`;
+    return followedUsers.some(user => user.id === id) ? "Followed" : "Follow"
 }
 
 
 
 
-// Following modalga olib kelish
 
-async function getFollowedData(param) {
-    const url = `https://randomuser.me/api/?name=${param}`;
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-  
-      const json = await response.json();
-      const data = json.results;
-        console.log(data);
-    } catch (error) {
-      console.error(error.message);
-    }
+// Follow qilingan userlar
+function followedUsersRender() {
+  const followedUsers = JSON.parse(localStorage.getItem("followed") || "[]");
+
+  followedElContainer.innerHTML = "";
+  if(followedUsers.length === 0) {
+    followedElContainer.innerHTML = "<h2>No followed users yet</h2>";
+    return;
+  } else {
+    followedElContainer.innerHTML = "<h2>Followed userlar bor, cardni render qilish kerak faqat</h2>";
   }
+}
+
 
 followingBtn.addEventListener("click", () => {
-    followed.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-    
-    getFollowedData()
+  followedUsersRender();
+  followed.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 })
